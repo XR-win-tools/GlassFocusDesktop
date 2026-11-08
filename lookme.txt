@@ -1,0 +1,2 @@
+where is exe?:
+~\GlassFocusDesktop\bin\Debug\GlassFocusDesktop.exe

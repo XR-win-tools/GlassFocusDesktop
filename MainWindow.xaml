@@ -1,0 +1,317 @@
+<Window x:Class="GlassFocusDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:GlassFocusDesktop"
+        xmlns:controls="clr-namespace:GlassFocusDesktop.Controls"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="Glass Focus" Height="560" Width="380"
+        WindowStyle="None" AllowsTransparency="False" Background="#0B0B10"
+        ResizeMode="NoResize" Topmost="True" ShowInTaskbar="True"
+        FontFamily="Segoe UI Variable Display, Segoe UI, Microsoft YaHei UI"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseMove="Window_MouseMove"
+        Loaded="Window_Loaded">
+
+	<shell:WindowChrome.WindowChrome>
+		<shell:WindowChrome CaptionHeight="0"
+                            ResizeBorderThickness="0"
+                            GlassFrameThickness="0"
+                            CornerRadius="28"
+                            UseAeroCaptionButtons="False"/>
+	</shell:WindowChrome.WindowChrome>
+
+	<Window.Resources>
+		<local:BoolToStartPauseConverter x:Key="BoolToStartPauseConverter"/>
+	</Window.Resources>
+
+	<Grid>
+		<!-- 主背景层：实色深底 + 光斑 + 高光 -->
+		<Border x:Name="MainCard" CornerRadius="0" Margin="0" ClipToBounds="True"
+                BorderBrush="#2AFFFFFF" BorderThickness="0,0,0,1">
+			<Border.Background>
+				<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+					<GradientStop Color="#14141A" Offset="0"/>
+					<GradientStop Color="#0B0B10" Offset="0.5"/>
+					<GradientStop Color="#101016" Offset="1"/>
+				</LinearGradientBrush>
+			</Border.Background>
+
+			<Grid>
+				<!-- 灰白光斑：营造层次，不需要透桌面 -->
+				<Grid>
+					<!-- 亮白 · 左上 -->
+					<Ellipse Width="460" Height="460"
+                             HorizontalAlignment="Left" VerticalAlignment="Top"
+                             Margin="-160,-180,0,0">
+						<Ellipse.Fill>
+							<RadialGradientBrush>
+								<GradientStop Color="#22FFFFFF" Offset="0"/>
+								<GradientStop Color="#0AFFFFFF" Offset="0.5"/>
+								<GradientStop Color="#00FFFFFF" Offset="1"/>
+							</RadialGradientBrush>
+						</Ellipse.Fill>
+					</Ellipse>
+
+					<!-- 亮白 · 右上 -->
+					<Ellipse Width="420" Height="420"
+                             HorizontalAlignment="Right" VerticalAlignment="Top"
+                             Margin="0,-120,-140,0">
+						<Ellipse.Fill>
+							<RadialGradientBrush>
+								<GradientStop Color="#1AFFFFFF" Offset="0"/>
+								<GradientStop Color="#08FFFFFF" Offset="0.55"/>
+								<GradientStop Color="#00FFFFFF" Offset="1"/>
+							</RadialGradientBrush>
+						</Ellipse.Fill>
+					</Ellipse>
+
+					<!-- 极淡灰 · 左下 -->
+					<Ellipse Width="400" Height="400"
+                             HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                             Margin="-140,0,0,-140">
+						<Ellipse.Fill>
+							<RadialGradientBrush>
+								<GradientStop Color="#12C8C8D0" Offset="0"/>
+								<GradientStop Color="#06C8C8D0" Offset="0.55"/>
+								<GradientStop Color="#00C8C8D0" Offset="1"/>
+							</RadialGradientBrush>
+						</Ellipse.Fill>
+					</Ellipse>
+
+					<!-- 亮白 · 右下 -->
+					<Ellipse Width="380" Height="380"
+                             HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                             Margin="0,0,-120,-120">
+						<Ellipse.Fill>
+							<RadialGradientBrush>
+								<GradientStop Color="#16FFFFFF" Offset="0"/>
+								<GradientStop Color="#06FFFFFF" Offset="0.55"/>
+								<GradientStop Color="#00FFFFFF" Offset="1"/>
+							</RadialGradientBrush>
+						</Ellipse.Fill>
+					</Ellipse>
+
+					<!-- 中央淡灰晕 -->
+					<Ellipse Width="500" Height="500"
+                             HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Ellipse.Fill>
+							<RadialGradientBrush>
+								<GradientStop Color="#0AA0A0A8" Offset="0"/>
+								<GradientStop Color="#00A0A0A8" Offset="1"/>
+							</RadialGradientBrush>
+						</Ellipse.Fill>
+					</Ellipse>
+				</Grid>
+
+				<!-- 顶部折射高光带 -->
+				<Rectangle VerticalAlignment="Top" Height="150" IsHitTestVisible="False">
+					<Rectangle.Fill>
+						<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+							<GradientStop Color="#2AFFFFFF" Offset="0"/>
+							<GradientStop Color="#08FFFFFF" Offset="0.4"/>
+							<GradientStop Color="#00FFFFFF" Offset="1"/>
+						</LinearGradientBrush>
+					</Rectangle.Fill>
+				</Rectangle>
+
+				<!-- 底部反光带 -->
+				<Rectangle VerticalAlignment="Bottom" Height="100" IsHitTestVisible="False">
+					<Rectangle.Fill>
+						<LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+							<GradientStop Color="#14FFFFFF" Offset="0"/>
+							<GradientStop Color="#00FFFFFF" Offset="1"/>
+						</LinearGradientBrush>
+					</Rectangle.Fill>
+				</Rectangle>
+
+				<!-- 左侧竖高光 -->
+				<Rectangle HorizontalAlignment="Left" Width="2" IsHitTestVisible="False">
+					<Rectangle.Fill>
+						<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+							<GradientStop Color="#00FFFFFF" Offset="0"/>
+							<GradientStop Color="#2AFFFFFF" Offset="0.3"/>
+							<GradientStop Color="#2AFFFFFF" Offset="0.7"/>
+							<GradientStop Color="#00FFFFFF" Offset="1"/>
+						</LinearGradientBrush>
+					</Rectangle.Fill>
+				</Rectangle>
+
+				<!-- 鼠标跟随光晕 -->
+				<Ellipse x:Name="LiquidHighlight" Width="460" Height="460"
+                         Opacity="0.07" IsHitTestVisible="False">
+					<Ellipse.Fill>
+						<RadialGradientBrush>
+							<GradientStop Color="#FFFFFF" Offset="0"/>
+							<GradientStop Color="#00FFFFFF" Offset="1"/>
+						</RadialGradientBrush>
+					</Ellipse.Fill>
+					<Ellipse.RenderTransform>
+						<TranslateTransform x:Name="HighlightTransform"/>
+					</Ellipse.RenderTransform>
+				</Ellipse>
+
+				<!-- 内容 -->
+				<Grid x:Name="RootGrid" Margin="22">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<!-- 顶部栏 -->
+					<Grid Grid.Row="0" Margin="0,0,0,14">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+
+						<StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+							<TextBlock Text="Glass Focus" FontSize="15" FontWeight="SemiBold" Foreground="White"/>
+							<TextBlock Text="  ·  液态玻璃" FontSize="11" Foreground="#80FFFFFF" VerticalAlignment="Center"/>
+						</StackPanel>
+
+						<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+							<Button x:Name="PinButton" Content="📌" Style="{StaticResource GlassIconButton}"
+                                    Click="PinButton_Click" Margin="3,0"/>
+							<Button x:Name="CollapseButton" Content="—" Style="{StaticResource GlassIconButton}"
+                                    Click="CollapseButton_Click" Margin="3,0"/>
+							<Button Content="✕" Style="{StaticResource GlassIconButton}"
+                                    Click="CloseButton_Click" Margin="3,0"/>
+						</StackPanel>
+					</Grid>
+
+					<!-- 时钟 -->
+					<Border Grid.Row="1" CornerRadius="18" Background="#10FFFFFF"
+                            BorderBrush="#22FFFFFF" BorderThickness="1" Padding="18" Margin="0,0,0,12">
+						<StackPanel HorizontalAlignment="Center">
+							<TextBlock Text="{Binding CurrentTime}" FontSize="46" FontWeight="Light"
+                                       Foreground="White" HorizontalAlignment="Center"/>
+							<TextBlock Text="当前时间" FontSize="10" Foreground="#80FFFFFF"
+                                       HorizontalAlignment="Center" Margin="0,-4,0,0"/>
+						</StackPanel>
+					</Border>
+
+					<!-- 番茄钟 -->
+					<Border Grid.Row="2" CornerRadius="18" Background="#10FFFFFF"
+                            BorderBrush="#22FFFFFF" BorderThickness="1" Padding="18" Margin="0,0,0,12">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+
+							<Grid Grid.Column="0" Width="100" Height="100" Margin="0,0,16,0">
+								<Ellipse Width="100" Height="100" Stroke="#1AFFFFFF" StrokeThickness="6"/>
+								<Path x:Name="ArcPath" Stroke="#B0FFFFFF" StrokeThickness="6"
+                                      StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+								<TextBlock Text="{Binding PomodoroTime}" FontSize="20" FontWeight="SemiBold"
+                                           Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								<TextBlock Text="{Binding PhaseText}" FontSize="10" Foreground="#80FFFFFF"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,28,0,0"/>
+							</Grid>
+
+							<StackPanel Grid.Column="1" VerticalAlignment="Center">
+								<TextBlock Text="番茄钟" FontSize="13" FontWeight="SemiBold" Foreground="White"
+                                           Margin="0,0,0,10"/>
+								<StackPanel Orientation="Horizontal">
+									<Button Content="{Binding IsPomodoroRunning, Converter={StaticResource BoolToStartPauseConverter}}"
+                                            Style="{StaticResource GlassButton}"
+                                            Click="PomodoroStartPause_Click" Margin="0,0,8,0" MinWidth="72"/>
+									<Button Content="重置" Style="{StaticResource GlassButton}"
+                                            Click="PomodoroReset_Click" MinWidth="60"/>
+								</StackPanel>
+							</StackPanel>
+						</Grid>
+					</Border>
+
+					<!-- 待办 -->
+					<Border Grid.Row="3" CornerRadius="18" Background="#10FFFFFF"
+                            BorderBrush="#22FFFFFF" BorderThickness="1" Padding="18" Margin="0,0,0,12">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+
+							<TextBlock Grid.Row="0" Text="今日待办" FontSize="13" FontWeight="SemiBold"
+                                       Foreground="White" Margin="0,0,0,10"/>
+
+							<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+								<ItemsControl ItemsSource="{Binding Todos}">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<Border CornerRadius="10" Margin="0,0,0,6" Padding="10,7">
+												<Border.Style>
+													<Style TargetType="Border">
+														<Setter Property="Background" Value="#08FFFFFF"/>
+														<Style.Triggers>
+															<Trigger Property="IsMouseOver" Value="True">
+																<Setter Property="Background" Value="#14FFFFFF"/>
+															</Trigger>
+														</Style.Triggers>
+													</Style>
+												</Border.Style>
+												<Grid>
+													<Grid.ColumnDefinitions>
+														<ColumnDefinition Width="Auto"/>
+														<ColumnDefinition Width="*"/>
+														<ColumnDefinition Width="Auto"/>
+													</Grid.ColumnDefinitions>
+
+													<CheckBox Grid.Column="0" IsChecked="{Binding IsDone}"
+                                                              Style="{StaticResource GlassCheckBox}"
+                                                              VerticalAlignment="Center"/>
+
+													<TextBlock Grid.Column="1" Text="{Binding Text}"
+                                                               Foreground="White" FontSize="13"
+                                                               VerticalAlignment="Center" Margin="10,0,0,0">
+														<TextBlock.Style>
+															<Style TargetType="TextBlock">
+																<Style.Triggers>
+																	<DataTrigger Binding="{Binding IsDone}" Value="True">
+																		<Setter Property="TextDecorations" Value="Strikethrough"/>
+																		<Setter Property="Foreground" Value="#66FFFFFF"/>
+																	</DataTrigger>
+																</Style.Triggers>
+															</Style>
+														</TextBlock.Style>
+													</TextBlock>
+
+													<Button Grid.Column="2" Content="✕"
+                                                            Style="{StaticResource GlassIconButton}"
+                                                            Width="24" Height="24" FontSize="10"
+                                                            Click="RemoveTodo_Click" Tag="{Binding}"/>
+												</Grid>
+											</Border>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</ScrollViewer>
+
+							<Grid Grid.Row="2" Margin="0,10,0,0">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<TextBox Grid.Column="0" Text="{Binding NewTodoText, UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource GlassTextBox}"
+                                         KeyDown="NewTodoTextBox_KeyDown" Margin="0,0,8,0"/>
+								<Button Grid.Column="1" Content="添加" Style="{StaticResource GlassButton}"
+                                        Click="AddTodo_Click" MinWidth="60"/>
+							</Grid>
+						</Grid>
+					</Border>
+
+					<TextBlock Grid.Row="4" Text="拖动窗口移动 · 点击置顶固定" FontSize="10"
+                               Foreground="#60FFFFFF" HorizontalAlignment="Center"/>
+				</Grid>
+
+				<!-- 噪点 -->
+				<controls:NoiseOverlay NoiseOpacity="0.03" IsHitTestVisible="False"/>
+			</Grid>
+		</Border>
+	</Grid>
+</Window>

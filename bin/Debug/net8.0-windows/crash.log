@@ -1,0 +1,100 @@
+[21:03:44.541] App.OnStartup begin
+[21:03:44.566] App.OnStartup end
+[21:03:44.582] MainWindow ctor begin
+[21:03:44.755] InitializeComponent done
+[21:03:44.759] DataContext set
+[21:03:45.210] Window_Loaded begin
+[21:03:45.212] UpdateArc ok
+[21:03:45.213] Window_Loaded end
+[21:05:55.002] App.OnStartup begin
+[21:05:55.015] App.OnStartup end
+[21:05:55.038] MainWindow ctor begin
+[21:05:55.154] InitializeComponent done
+[21:05:55.156] DataContext set
+[21:05:55.418] Window_Loaded begin
+[21:05:55.419] UpdateArc ok
+[21:05:55.420] Window_Loaded end
+[21:06:00.836] App.OnStartup begin
+[21:06:00.849] App.OnStartup end
+[21:06:00.875] MainWindow ctor begin
+[21:06:00.987] InitializeComponent done
+[21:06:00.989] DataContext set
+[21:06:01.328] Window_Loaded begin
+[21:06:01.331] UpdateArc ok
+[21:06:01.331] Window_Loaded end
+[21:13:37.383] App.OnStartup begin
+[21:13:37.394] App.OnStartup end
+[21:13:37.409] MainWindow ctor begin
+[21:13:37.593] InitializeComponent done
+[21:13:37.596] DataContext set
+[21:13:38.010] Window_Loaded begin
+[21:13:38.012] UpdateArc ok
+[21:13:38.013] Window_Loaded end
+[21:18:14.199] App.OnStartup begin
+[21:18:14.217] App.OnStartup end
+[21:18:14.236] MainWindow ctor begin
+[21:18:14.427] InitializeComponent done
+[21:18:14.429] DataContext set
+[21:18:14.836] Window_Loaded begin
+[21:18:14.838] UpdateArc ok
+[21:18:14.839] Window_Loaded end
+[21:19:27.924] App.OnStartup begin
+[21:19:27.945] App.OnStartup end
+[21:19:27.969] MainWindow ctor begin
+[21:19:28.144] InitializeComponent done
+[21:19:28.147] DataContext set
+[21:19:28.471] Window_Loaded begin
+[21:19:28.473] UpdateArc ok
+[21:19:28.474] Window_Loaded end
+[21:20:30.931] App.OnStartup begin
+[21:20:30.950] App.OnStartup end
+[21:20:30.976] MainWindow ctor begin
+[21:20:31.146] InitializeComponent done
+[21:20:31.148] DataContext set
+[21:20:31.492] Window_Loaded begin
+[21:20:31.494] UpdateArc ok
+[21:20:31.494] Window_Loaded end
+[21:21:38.167] App.OnStartup begin
+[21:21:38.186] App.OnStartup end
+[21:21:38.204] MainWindow ctor begin
+[21:21:38.374] InitializeComponent done
+[21:21:38.377] DataContext set
+[21:21:38.656] Window_Loaded begin
+[21:21:38.657] UpdateArc ok
+[21:21:38.658] Window_Loaded end
+[21:28:37.855] App.OnStartup begin
+[21:28:37.877] App.OnStartup end
+[21:28:37.893] MainWindow ctor begin
+[21:28:38.091] InitializeComponent done
+[21:28:38.094] DataContext set
+[21:28:38.402] Window_Loaded begin
+[21:28:38.404] Corner radius applied
+[21:28:38.405] UpdateArc ok
+[21:28:38.406] Window_Loaded end
+[21:29:31.294] App.OnStartup begin
+[21:29:31.311] App.OnStartup end
+[21:29:31.336] MainWindow ctor begin
+[21:29:31.486] InitializeComponent done
+[21:29:31.488] DataContext set
+[21:29:31.752] Window_Loaded begin
+[21:29:31.753] Corner radius applied
+[21:29:31.754] UpdateArc ok
+[21:29:31.755] Window_Loaded end
+[21:30:20.167] App.OnStartup begin
+[21:30:20.184] App.OnStartup end
+[21:30:20.212] MainWindow ctor begin
+[21:30:20.352] InitializeComponent done
+[21:30:20.355] DataContext set
+[21:30:20.579] Window_Loaded begin
+[21:30:20.580] Corner radius applied
+[21:30:20.581] UpdateArc ok
+[21:30:20.581] Window_Loaded end
+[21:44:11.917] App.OnStartup begin
+[21:44:11.933] App.OnStartup end
+[21:44:11.959] MainWindow ctor begin
+[21:44:12.101] InitializeComponent done
+[21:44:12.103] DataContext set
+[21:44:12.321] Window_Loaded begin
+[21:44:12.322] Corner radius applied
+[21:44:12.323] UpdateArc ok
+[21:44:12.324] Window_Loaded end
